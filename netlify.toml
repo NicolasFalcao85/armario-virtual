@@ -1,0 +1,10 @@
+# Config opcional para deployar en Netlify en vez de GitHub Pages.
+# Si usás esto, poné `base: '/'` en vite.config.ts.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
