@@ -1,0 +1,32 @@
+{
+  "name": "Armario Virtual",
+  "short_name": "Armario",
+  "description": "Tu placard digital con estilista IA. Catalogá tu ropa y armá looks a medida.",
+  "start_url": "/armario-virtual/",
+  "scope": "/armario-virtual/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#faf6f1",
+  "theme_color": "#c2542f",
+  "lang": "es-AR",
+  "icons": [
+    {
+      "src": "/armario-virtual/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/armario-virtual/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/armario-virtual/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
