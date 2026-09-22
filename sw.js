@@ -4,7 +4,7 @@
 // same-origin GET, así Firebase (auth/Firestore/Storage/Functions), Gemini y
 // Open-Meteo siempre van directo a la red y nunca sirven datos viejos/cache.
 
-const CACHE = 'armario-virtual-shell-v1';
+const CACHE = 'armario-virtual-shell-v2';
 const BASE = self.registration.scope; // ej: https://user.github.io/armario-virtual/
 
 self.addEventListener('install', (event) => {
@@ -48,7 +48,16 @@ self.addEventListener('fetch', (event) => {
     caches.match(request).then((cacheada) => {
       const red = fetch(request)
         .then((res) => {
-          if (res.ok) caches.open(CACHE).then((cache) => cache.put(request, res.clone()));
+          // Clonamos ANTES de devolver nada: si guardar en cache falla o se
+          // pisa con otra lectura de la respuesta, no tiene que romper la
+          // carga real del recurso (por eso además el .catch al final).
+          if (res.ok) {
+            const copia = res.clone();
+            caches
+              .open(CACHE)
+              .then((cache) => cache.put(request, copia))
+              .catch(() => {});
+          }
           return res;
         })
         .catch(() => cacheada);
